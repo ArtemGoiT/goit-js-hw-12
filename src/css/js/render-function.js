@@ -4,7 +4,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 export const galleryEl = document.querySelector('.gallery');
 
 export function imageTemplate(data) {
-  const marcup = data.hits
+  const markup = data.hits
     .map(
       ({
         webformatURL,
@@ -30,5 +30,13 @@ export function imageTemplate(data) {
     )
 
     .join('');
-  galleryEl.insertAdjacentHTML('beforeend', marcup);
+  galleryEl.insertAdjacentHTML('beforeend', markup);
+
+  const lightbox = new SimpleLightbox('gallery a', {
+    captions: true,
+    captionDelay: 250,
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+  });
+  lightbox.refresh();
 }
